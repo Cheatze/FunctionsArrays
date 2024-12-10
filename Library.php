@@ -83,6 +83,7 @@ function addBook()
     $books[$bookTitle][] = $newBookArr;
 }
 
+#Function to remove a book from the $books
 function removeBook()
 {
     global $books;
@@ -107,6 +108,7 @@ function removeBook()
     unset($books[$removeBook]);
 }
 
+#Function to show all books
 function showAllBooks()
 {
     global $books;
@@ -119,6 +121,10 @@ function showAllBooks()
         }
     }
 }
+
+#Function to show all books of a certain author
+
+
 
 addBook();
 var_dump($books);
