@@ -123,7 +123,32 @@ function showAllBooks()
 }
 
 #Function to show all books of a certain author
+function showAuthorBooks()
+{
+    global $authors;
+    global $books;
+    $checker = false;
+    do {
+        foreach ($authors as $key => $author) {
+            echo $key . ' ' . $author . "\n";
+        }
+        $authorIndex = readline("Choose an author by index number: ");
+        if (array_key_exists($authorIndex, $authors)) {
+            $checker = true;
+        } else {
+            echo "That author index does not exist" . "\n";
+        }
+    } while ($checker == false);
+    $chosenAuthor = $authors[$authorIndex];
+    foreach ($books as $title => $details) {
+        if (in_array($chosenAuthor, $details)) {
+            echo "Title: $title\n";
+            echo "Author: " . $details['author'] . ", ISBN: " . $details['isbn'] . ", Publisher: " . $details['publisher'] . ", Publishing Date: " . $details['publishing_date'] . ", Pages: " . $details['pages'] . "\n\n";
+        }
 
+    }
+
+}
 
 
 addBook();
