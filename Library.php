@@ -1,5 +1,49 @@
 <?php
-$books = [];
+#$books = [];
+$books = [
+    "Harry Potter and the Philosopher's Stone" => [
+        "author" => "J.K. Rowling",
+        "isbn" => "978-0-7475-3269-9",
+        "publisher" => "Bloomsbury",
+        "publishing_date" => "26 June 1997",
+        "pages" => 223
+    ],
+    "Harry Potter and the Chamber of Secrets" => [
+        "author" => "J.K. Rowling",
+        "isbn" => "978-0-7475-3849-3",
+        "publisher" => "Bloomsbury",
+        "publishing_date" => "2 July 1998",
+        "pages" => 251
+    ],
+    "The Shining" => [
+        "author" => "Stephen King",
+        "isbn" => "978-0-385-12167-5",
+        "publisher" => "Doubleday",
+        "publishing_date" => "28 January 1977",
+        "pages" => 447
+    ],
+    "It" => [
+        "author" => "Stephen King",
+        "isbn" => "978-0-670-81302-5",
+        "publisher" => "Viking",
+        "publishing_date" => "15 September 1986",
+        "pages" => 1138
+    ],
+    "The Da Vinci Code" => [
+        "author" => "Dan Brown",
+        "isbn" => "978-0-385-50420-8",
+        "publisher" => "Doubleday",
+        "publishing_date" => "18 March 2003",
+        "pages" => 689
+    ],
+    "Angels & Demons" => [
+        "author" => "Dan Brown",
+        "isbn" => "978-0-671-02735-4",
+        "publisher" => "Pocket Books",
+        "publishing_date" => "1 May 2000",
+        "pages" => 616
+    ]
+];
 $authors = ["J.K. Rowling", "Stephen King", "Dan Brown"];
 
 
@@ -42,7 +86,38 @@ function addBook()
 function removeBook()
 {
     global $books;
+    $checker = false;
+    do {
+        foreach ($books as $title => $details) {
+            echo "Title: $title\n";
+            echo "Author: " . $details['author'] . ", ISBN: " . $details['isbn'] . ", Publisher: " . $details['publisher'] . ", Publishing Date: " . $details['publishing_date'] . ", Pages: " . $details['pages'] . "\n\n";
+        }
+        $removeBook = readline("Enter the title you want to remove: ");
+        if (array_key_exists($removeBook, $books) == false) {
+            echo "That book does not exist or you spelled it wrong." . "\n";
+            continue;
+        }
+        $afirmation = readline('Are you sure you want to remove ' . $removeBook . '? Yes or No');
+        if ($afirmation == 'Yes' || 'yes') {
+            $checker = true;
+        } elseif ($afirmation == 'No' || 'no') {
+            return;
+        }
+    } while ($checker == false);
+    unset($books[$removeBook]);
+}
 
+function showAllBooks()
+{
+    global $books;
+    if (empty($books)) {
+        echo "There are no books in the array.";
+    } else {
+        foreach ($books as $title => $details) {
+            echo "Title: $title\n";
+            echo "Author: " . $details['author'] . ", ISBN: " . $details['isbn'] . ", Publisher: " . $details['publisher'] . ", Publishing Date: " . $details['publishing_date'] . ", Pages: " . $details['pages'] . "\n\n";
+        }
+    }
 }
 
 addBook();
