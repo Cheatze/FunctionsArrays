@@ -33,15 +33,16 @@ function addBook()
     $publicationDate = readline("Enter the publication date: ");
     $pageCount = readline("Enter the page count: ");
 
-    echo "New book: " . $chosenAuthor . ' ' . $bookTitle . ' ' . $publicationDate . ' ' . $bookNumber;
-    $newBookArr = [$bookTitle, $bookNumber, $publisher, $publicationDate, $pageCount];
+    #echo "New book: " . $chosenAuthor . ' ' . $bookTitle . ' ' . $publicationDate . ' ' . $bookNumber;
+    $newBookArr = ["author" => $chosenAuthor, "isbn" => $bookNumber, "publisher" => $publisher, "publishing_date" => $publicationDate, "pages" => $pageCount];
     global $books;
-    $books[$chosenAuthor][] = $newBookArr;
+    $books[$bookTitle][] = $newBookArr;
 }
 
 function removeBook()
 {
-    echo "";
+    global $books;
+
 }
 
 addBook();
