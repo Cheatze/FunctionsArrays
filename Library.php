@@ -1,5 +1,4 @@
 <?php
-#$books = [];
 $books = [
     "Harry Potter and the Philosopher's Stone" => [
         "author" => "J.K. Rowling",
@@ -50,12 +49,10 @@ $authors = ["J.K. Rowling", "Stephen King", "Dan Brown", "Bobby"];
 #Function to add a book to the $books array
 function addBook()
 {
-    #echo "Choose an author by index number:" . "\n";
     global $authors;
     foreach ($authors as $key => $author) {
         echo $key . ' ' . $author . "\n";
     }
-    #$authorIndex = readline(": ");
 
     $checker = false;
     while ($checker == false) {
@@ -77,14 +74,13 @@ function addBook()
     $publicationDate = readline("Enter the publication date: ");
     $pageCount = readline("Enter the page count: ");
 
-    #echo "New book: " . $chosenAuthor . ' ' . $bookTitle . ' ' . $publicationDate . ' ' . $bookNumber;
     $newBookArr = ["author" => $chosenAuthor, "isbn" => $bookNumber, "publisher" => $publisher, "publishing_date" => $publicationDate, "pages" => $pageCount];
     global $books;
     $books[$bookTitle][] = $newBookArr;
     echo "$bookTitle has been added. \n";
 }
 
-#Function to remove a book from the $books
+#Function to remove a book from the $books array
 function removeBook()
 {
     global $books;
@@ -159,12 +155,9 @@ function showAuthorBooks()
     }
 }
 
-#removeBook();
-#addBook();
-#showAllBooks();
-#showAuthorBooks();
-#var_dump($books);
 
+//Main loop of the program from where you can choose what to do
+//And where you return to the beginning after doing something
 $session = true;
 while ($session == true) {
     echo "What do you want to do? \n";
