@@ -108,7 +108,7 @@ function removeBook()
         }
     } while ($checker == false);
     unset($books[$removeBook]);
-    echo "$removeBook removed";
+    echo "$removeBook removed \n";
 }
 
 #Function to show all books
