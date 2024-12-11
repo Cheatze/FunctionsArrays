@@ -44,7 +44,7 @@ $books = [
         "pages" => 616
     ]
 ];
-$authors = ["J.K. Rowling", "Stephen King", "Dan Brown"];
+$authors = ["J.K. Rowling", "Stephen King", "Dan Brown", "Bobby"];
 
 
 #Function to add a book to the $books array
@@ -147,25 +147,43 @@ function showAuthorBooks()
         if (in_array($chosenAuthor, $details)) {
             echo "Title: $title\n";
             echo "Author: " . $details['author'] . ", ISBN: " . $details['isbn'] . ", Publisher: " . $details['publisher'] . ", Publishing Date: " . $details['publishing_date'] . ", Pages: " . $details['pages'] . "\n\n";
+        } else {
+            echo "There are no books by that author \n";
+            break;
         }
-
     }
 
 }
 
-removeBook();
+#removeBook();
 #addBook();
 #showAllBooks();
 #showAuthorBooks();
 #var_dump($books);
 
-// $session = true;
-// while ($session == true) {
-//     echo "What do you want to do?";
-//     echo "1: add a book";
-//     echo "2: Remove a book";
-//     echo "3: Show all books";
-//     echo "4: Show all books of a certain author";
-//     $choice = readline("Choose by number: ");
-
-// }
+$session = true;
+while ($session == true) {
+    echo "What do you want to do? \n";
+    echo "1: add a book \n";
+    echo "2: Remove a book \n";
+    echo "3: Show all books \n";
+    echo "4: Show all books of a certain author \n";
+    echo "5: exit \n";
+    $choice = readline("Choose by number: ");
+    switch ($choice) {
+        case "1":
+            addBook();
+            break;
+        case "2":
+            removeBook();
+            break;
+        case "3":
+            showAllBooks();
+            break;
+        case "4":
+            showAuthorBooks();
+            break;
+        case "5":
+            $session = false;
+    }
+}
