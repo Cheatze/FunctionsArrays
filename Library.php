@@ -46,7 +46,11 @@ $books = [
 $authors = ["J.K. Rowling", "Stephen King", "Dan Brown", "Bobby"];
 
 
-#Function to add a book to the $books array
+/**
+ *Function to add a book to the $books array
+ *
+ * @return void
+ */
 function addBook()
 {
     global $authors;
@@ -80,7 +84,10 @@ function addBook()
     echo "$bookTitle has been added. \n";
 }
 
-#Function to remove a book from the $books array
+/**
+ * Function to remove a book from the $books array
+ * @return void
+ */
 function removeBook()
 {
     global $books;
@@ -107,7 +114,10 @@ function removeBook()
     echo "$removeBook removed \n";
 }
 
-#Function to show all books
+/**
+ * Function to show all books
+ * @return void
+ */
 function showAllBooks()
 {
     global $books;
@@ -121,7 +131,10 @@ function showAllBooks()
     }
 }
 
-#Function to show all books of a certain author
+/**
+ * Function to show all books of a certain author
+ * @return void
+ */
 function showAuthorBooks()
 {
     global $authors;
@@ -156,8 +169,10 @@ function showAuthorBooks()
 }
 
 
-//Main loop of the program from where you can choose what to do
-//And where you return to the beginning after doing something
+/**
+ *Main loop of the program from where you can choose what to do
+ *And where you return to the beginning after doing something
+ */
 $session = true;
 while ($session == true) {
     echo "What do you want to do? \n";
