@@ -81,6 +81,7 @@ function addBook()
     $newBookArr = ["author" => $chosenAuthor, "isbn" => $bookNumber, "publisher" => $publisher, "publishing_date" => $publicationDate, "pages" => $pageCount];
     global $books;
     $books[$bookTitle][] = $newBookArr;
+    echo "$bookTitle has been added. \n";
 }
 
 #Function to remove a book from the $books
@@ -88,6 +89,7 @@ function removeBook()
 {
     global $books;
     $checker = false;
+    $noRemove = false;
     do {
         foreach ($books as $title => $details) {
             echo "Title: $title\n";
@@ -95,17 +97,18 @@ function removeBook()
         }
         $removeBook = readline("Enter the title you want to remove: ");
         if (array_key_exists($removeBook, $books) == false) {
-            echo "That book does not exist or you spelled it wrong." . "\n";
+            echo "That book does not exist or you spelled it wrong. " . "\n";
             continue;
         }
-        $afirmation = readline('Are you sure you want to remove ' . $removeBook . '? Yes or No');
-        if ($afirmation == 'Yes' || 'yes') {
+        $afirmation = readline('Are you sure you want to remove ' . $removeBook . '? Yes or No: ');
+        if ($afirmation == 'Yes' || $afirmation == 'yes') {
             $checker = true;
-        } elseif ($afirmation == 'No' || 'no') {
+        } elseif ($afirmation == 'No' || $afirmation == 'no') {
             return;
         }
     } while ($checker == false);
     unset($books[$removeBook]);
+    echo "$removeBook removed";
 }
 
 #Function to show all books
@@ -150,6 +153,19 @@ function showAuthorBooks()
 
 }
 
+removeBook();
+#addBook();
+#showAllBooks();
+#showAuthorBooks();
+#var_dump($books);
 
-addBook();
-var_dump($books);
+// $session = true;
+// while ($session == true) {
+//     echo "What do you want to do?";
+//     echo "1: add a book";
+//     echo "2: Remove a book";
+//     echo "3: Show all books";
+//     echo "4: Show all books of a certain author";
+//     $choice = readline("Choose by number: ");
+
+// }
