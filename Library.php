@@ -142,17 +142,21 @@ function showAuthorBooks()
             echo "That author index does not exist" . "\n";
         }
     } while ($checker == false);
+
     $chosenAuthor = $authors[$authorIndex];
-    foreach ($books as $title => $details) {
-        if (in_array($chosenAuthor, $details)) {
+
+    $filteredBooks = array_filter($books, function ($details) use ($chosenAuthor) {
+        return $details['author'] === $chosenAuthor;
+    });
+
+    if (empty($filteredBooks)) {
+        echo "There are no books by that author \n";
+    } else {
+        foreach ($filteredBooks as $title => $details) {
             echo "Title: $title\n";
             echo "Author: " . $details['author'] . ", ISBN: " . $details['isbn'] . ", Publisher: " . $details['publisher'] . ", Publishing Date: " . $details['publishing_date'] . ", Pages: " . $details['pages'] . "\n\n";
-        } else {
-            echo "There are no books by that author \n";
-            break;
         }
     }
-
 }
 
 #removeBook();
