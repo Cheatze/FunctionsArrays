@@ -75,22 +75,8 @@ function pickAuthor($authors)
 function addBook()
 {
     global $authors;
-    foreach ($authors as $key => $author) {
-        echo $key . ' ' . $author . "\n";
-    }
 
-    while (true) {
-        $authorIndex = readline("Choose an author by index number: ");
-        if (array_key_exists($authorIndex, $authors)) {
-            #echo "Yay!";
-            break;
-        } else {
-            echo "That author index does not exist" . "\n";
-        }
-
-    }
-
-    $chosenAuthor = $authors[$authorIndex];
+    $chosenAuthor = pickAuthor($authors);
 
     $bookTitle = readline("Enter the title: ");
     $bookNumber = readline("Enter the ISBN: ");
@@ -158,19 +144,8 @@ function showAuthorBooks()
 {
     global $authors;
     global $books;
-    do {
-        foreach ($authors as $key => $author) {
-            echo $key . ' ' . $author . "\n";
-        }
-        $authorIndex = readline("Choose an author by index number: ");
-        if (array_key_exists($authorIndex, $authors)) {
-            break;
-        } else {
-            echo "That author index does not exist" . "\n";
-        }
-    } while (true);
 
-    $chosenAuthor = $authors[$authorIndex];
+    $chosenAuthor = pickAuthor($authors);
 
     $filteredBooks = array_filter($books, function ($details) use ($chosenAuthor) {
         return $details['author'] === $chosenAuthor;
