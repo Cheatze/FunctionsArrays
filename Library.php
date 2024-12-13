@@ -60,7 +60,6 @@ function addBook()
         echo $key . ' ' . $author . "\n";
     }
 
-    #$checker = false;
     while (true) {
         $authorIndex = readline("Choose an author by index number: ");
         if (array_key_exists($authorIndex, $authors)) {
@@ -93,8 +92,6 @@ function addBook()
 function removeBook()
 {
     global $books;
-    #$checker = false;
-    $noRemove = false;
     do {
         foreach ($books as $title => $details) {
             echo "Title: $title\n";
@@ -106,9 +103,10 @@ function removeBook()
             continue;
         }
         $afirmation = readline('Are you sure you want to remove ' . $removeBook . '? Yes or No: ');
-        if ($afirmation == 'Yes' || $afirmation == 'yes') {
+        $afirmation = strtolower($afirmation);
+        if ($afirmation == 'yes') {
             break;
-        } elseif ($afirmation == 'No' || $afirmation == 'no') {
+        } elseif ($afirmation == 'no') {
             return;
         }
     } while (true);
@@ -141,7 +139,6 @@ function showAuthorBooks()
 {
     global $authors;
     global $books;
-    #$checker = false;
     do {
         foreach ($authors as $key => $author) {
             echo $key . ' ' . $author . "\n";
@@ -175,7 +172,6 @@ function showAuthorBooks()
  *Main loop of the program from where you can choose what to do
  *And where you return to the beginning after doing something
  */
-#$session = true;
 while (true) {
     echo "What do you want to do? \n";
     echo "1: add a book \n";
