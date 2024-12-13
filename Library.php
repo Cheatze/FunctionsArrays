@@ -45,8 +45,27 @@ $books = [
 ];
 $authors = ["J.K. Rowling", "Stephen King", "Dan Brown", "Bobby"];
 
+/**
+ * Displays all the authors lets you pick one by index and returns that author
+ * @param mixed $authors
+ * @return mixed
+ */
+function pickAuthor($authors)
+{
+    do {
+        foreach ($authors as $key => $author) {
+            echo $key . ' ' . $author . "\n";
+        }
+        $authorIndex = readline("Choose an author by index number: ");
+        if (array_key_exists($authorIndex, $authors)) {
+            $checker = true;
+        } else {
+            echo "That author index does not exist" . "\n";
+        }
+    } while ($checker == false);
 
-
+    return $authors[$authorIndex];
+}
 
 /**
  *Function to add a book to the $books array
