@@ -98,6 +98,7 @@ function removeBook()
 {
     global $books;
     do {
+        $titles = array_keys($books);//Get all the titles from the $books array so can use index to select
         foreach ($books as $title => $details) {
             echo "Title: $title\n";
             echo "Author: " . $details['author'] . ", ISBN: " . $details['isbn'] . ", Publisher: " . $details['publisher'] . ", Publishing Date: " . $details['publishing_date'] . ", Pages: " . $details['pages'] . "\n\n";
