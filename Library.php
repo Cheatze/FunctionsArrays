@@ -46,6 +46,8 @@ $books = [
 $authors = ["J.K. Rowling", "Stephen King", "Dan Brown", "Bobby"];
 
 
+
+
 /**
  *Function to add a book to the $books array
  *
@@ -58,12 +60,12 @@ function addBook()
         echo $key . ' ' . $author . "\n";
     }
 
-    $checker = false;
-    while ($checker == false) {
+    #$checker = false;
+    while (true) {
         $authorIndex = readline("Choose an author by index number: ");
         if (array_key_exists($authorIndex, $authors)) {
             #echo "Yay!";
-            $checker = true;
+            break;
         } else {
             echo "That author index does not exist" . "\n";
         }
@@ -80,7 +82,7 @@ function addBook()
 
     $newBookArr = ["author" => $chosenAuthor, "isbn" => $bookNumber, "publisher" => $publisher, "publishing_date" => $publicationDate, "pages" => $pageCount];
     global $books;
-    $books[$bookTitle][] = $newBookArr;
+    $books[$bookTitle] = $newBookArr;
     echo "$bookTitle has been added. \n";
 }
 
@@ -91,7 +93,7 @@ function addBook()
 function removeBook()
 {
     global $books;
-    $checker = false;
+    #$checker = false;
     $noRemove = false;
     do {
         foreach ($books as $title => $details) {
@@ -105,11 +107,11 @@ function removeBook()
         }
         $afirmation = readline('Are you sure you want to remove ' . $removeBook . '? Yes or No: ');
         if ($afirmation == 'Yes' || $afirmation == 'yes') {
-            $checker = true;
+            break;
         } elseif ($afirmation == 'No' || $afirmation == 'no') {
             return;
         }
-    } while ($checker == false);
+    } while (true);
     unset($books[$removeBook]);
     echo "$removeBook removed \n";
 }
@@ -139,18 +141,18 @@ function showAuthorBooks()
 {
     global $authors;
     global $books;
-    $checker = false;
+    #$checker = false;
     do {
         foreach ($authors as $key => $author) {
             echo $key . ' ' . $author . "\n";
         }
         $authorIndex = readline("Choose an author by index number: ");
         if (array_key_exists($authorIndex, $authors)) {
-            $checker = true;
+            break;
         } else {
             echo "That author index does not exist" . "\n";
         }
-    } while ($checker == false);
+    } while (true);
 
     $chosenAuthor = $authors[$authorIndex];
 
@@ -173,8 +175,8 @@ function showAuthorBooks()
  *Main loop of the program from where you can choose what to do
  *And where you return to the beginning after doing something
  */
-$session = true;
-while ($session == true) {
+#$session = true;
+while (true) {
     echo "What do you want to do? \n";
     echo "1: add a book \n";
     echo "2: Remove a book \n";
@@ -196,6 +198,6 @@ while ($session == true) {
             showAuthorBooks();
             break;
         case "5":
-            $session = false;
+            exit();
     }
 }
