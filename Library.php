@@ -99,11 +99,15 @@ function removeBook()
     global $books;
     do {
         $titles = array_keys($books);//Get all the titles from the $books array so can use index to select
-        foreach ($books as $title => $details) {
-            echo "Title: $title\n";
-            echo "Author: " . $details['author'] . ", ISBN: " . $details['isbn'] . ", Publisher: " . $details['publisher'] . ", Publishing Date: " . $details['publishing_date'] . ", Pages: " . $details['pages'] . "\n\n";
+        // foreach ($books as $title => $details) {
+        //     echo "Title: $title\n";
+        //     echo "Author: " . $details['author'] . ", ISBN: " . $details['isbn'] . ", Publisher: " . $details['publisher'] . ", Publishing Date: " . $details['publishing_date'] . ", Pages: " . $details['pages'] . "\n\n";
+        // }
+        foreach ($titles as $key => $title) {
+            echo $key . ' ' . $title . "\n";
         }
-        $removeBook = readline("Enter the title you want to remove: ");
+        $removeBookindex = readline("Enter the index of the title you want to remove: ");
+        $removeBook = $titles[$removeBookindex];
         if (array_key_exists($removeBook, $books) == false) {
             echo "That book does not exist or you spelled it wrong. " . "\n";
             continue;
