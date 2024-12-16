@@ -68,6 +68,20 @@ function pickAuthor($authors)
 }
 
 /**
+ * Loops through given array of books and desplays titles and details
+ * @param mixed $books
+ * @return void
+ */
+function bookLoop($books)
+{
+    foreach ($books as $title => $details) {
+        echo "Title: $title\n";
+        echo "Author: " . $details['author'] . ", ISBN: " . $details['isbn'] . ", Publisher: " . $details['publisher'] . ", Publishing Date: " . $details['publishing_date'] . ", Pages: " . $details['pages'] . "\n\n";
+    }
+}
+
+
+/**
  *Function to add a book to the $books array
  *
  * @return void
@@ -98,11 +112,7 @@ function removeBook()
 {
     global $books;
     do {
-        $titles = array_keys($books);//Get all the titles from the $books array so can use index to select
-        // foreach ($books as $title => $details) {
-        //     echo "Title: $title\n";
-        //     echo "Author: " . $details['author'] . ", ISBN: " . $details['isbn'] . ", Publisher: " . $details['publisher'] . ", Publishing Date: " . $details['publishing_date'] . ", Pages: " . $details['pages'] . "\n\n";
-        // }
+        $titles = array_keys($books);
         foreach ($titles as $key => $title) {
             echo $key . ' ' . $title . "\n";
         }
@@ -134,10 +144,7 @@ function showAllBooks()
     if (empty($books)) {
         echo "There are no books in the array.";
     } else {
-        foreach ($books as $title => $details) {
-            echo "Title: $title\n";
-            echo "Author: " . $details['author'] . ", ISBN: " . $details['isbn'] . ", Publisher: " . $details['publisher'] . ", Publishing Date: " . $details['publishing_date'] . ", Pages: " . $details['pages'] . "\n\n";
-        }
+        bookLoop($books);
     }
 }
 
@@ -159,10 +166,7 @@ function showAuthorBooks()
     if (empty($filteredBooks)) {
         echo "There are no books by that author \n";
     } else {
-        foreach ($filteredBooks as $title => $details) {
-            echo "Title: $title\n";
-            echo "Author: " . $details['author'] . ", ISBN: " . $details['isbn'] . ", Publisher: " . $details['publisher'] . ", Publishing Date: " . $details['publishing_date'] . ", Pages: " . $details['pages'] . "\n\n";
-        }
+        bookLoop($filteredBooks);
     }
 }
 
