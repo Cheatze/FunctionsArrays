@@ -119,7 +119,7 @@ function removeBook()
         $removeBookindex = readline("Enter the index of the title you want to remove: ");
         $removeBook = $titles[$removeBookindex];
         if (array_key_exists($removeBook, $books) == false) {
-            echo "That book does not exist or you spelled it wrong. " . "\n";
+            echo "That index does not exist. " . "\n";
             continue;
         }
         $afirmation = readline('Are you sure you want to remove ' . $removeBook . '? Yes or No: ');
@@ -170,33 +170,43 @@ function showAuthorBooks()
     }
 }
 
-
 /**
- *Main loop of the program from where you can choose what to do
- *And where you return to the beginning after doing something
+ * Main menu' loop function
+ * From where you can choose what to do
+ * And where you return to the beginning after doing something
+ * @return void
  */
-while (true) {
-    echo "What do you want to do? \n";
-    echo "1: add a book \n";
-    echo "2: Remove a book \n";
-    echo "3: Show all books \n";
-    echo "4: Show all books of a certain author \n";
-    echo "5: exit \n";
-    $choice = readline("Choose by number: ");
-    switch ($choice) {
-        case "1":
-            addBook();
-            break;
-        case "2":
-            removeBook();
-            break;
-        case "3":
-            showAllBooks();
-            break;
-        case "4":
-            showAuthorBooks();
-            break;
-        case "5":
-            exit();
+function mainMenu()
+{
+    while (true) {
+        echo "What do you want to do? \n";
+        echo "1: add a book \n";
+        echo "2: Remove a book \n";
+        echo "3: Show all books \n";
+        echo "4: Show all books of a certain author \n";
+        echo "5: exit \n";
+        $choice = readline("Choose by number: ");
+        switch ($choice) {
+            case "1":
+                addBook();
+                break;
+            case "2":
+                removeBook();
+                break;
+            case "3":
+                showAllBooks();
+                break;
+            case "4":
+                showAuthorBooks();
+                break;
+            case "5":
+                exit();
+        }
     }
 }
+
+
+/**
+ *Call mainMenu and run the program
+ */
+mainMenu();
